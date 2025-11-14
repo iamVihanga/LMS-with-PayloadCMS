@@ -1,5 +1,5 @@
 import React from 'react'
-import { DM_Sans as FontSans } from 'next/font/google'
+import { DM_Sans as FontSans, Space_Grotesk as FontHeading } from 'next/font/google'
 
 import './styles.css'
 import { cn } from '@/lib/utils'
@@ -14,12 +14,21 @@ const fontSans = FontSans({
   variable: '--font-sans',
 })
 
+const fontHeading = FontHeading({
+  subsets: ['latin'],
+  variable: '--font-heading',
+})
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
     <html lang="en" className="h-full">
-      <body className={cn('h-full m-0 font-sans antialiased', fontSans.variable)}>{children}</body>
+      <body
+        className={cn('h-full m-0 font-sans antialiased', fontSans.variable, fontHeading.variable)}
+      >
+        {children}
+      </body>
     </html>
   )
 }
