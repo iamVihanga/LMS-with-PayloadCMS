@@ -8,13 +8,23 @@ import type { Payload } from 'payload'
 import type { Customer } from '@/payload-types'
 
 export async function getUser(): Promise<Customer | null> {
-  const headers = await getHeaders()
+  try {
+    const headers = await getHeaders()
 
-  const payload: Payload = await getPayload({
-    config: await configPromise,
-  })
+    const payload: Payload = await getPayload({
+      config: await configPromise,
+    })
 
-  const { user } = await payload.auth({ headers })
+    const { user } = await payload.auth({ headers })
 
-  return user || null
+    // Check if user belongs to customers collection
+    if (user && user.collection === 'customers') {
+      return user as Customer
+    }
+
+    return null
+  } catch (error) {
+    console.error('Authentication error:', error)
+    return null
+  }
 }
