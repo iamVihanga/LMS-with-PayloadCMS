@@ -1,4 +1,5 @@
 import React from 'react'
+import { LogoutButton } from '../_components/logout-button'
 
 type Props = {}
 
