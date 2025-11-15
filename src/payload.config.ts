@@ -10,6 +10,8 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import brevoAdapter from './utils/brevoAdapter'
 import { Customers } from './collections/Customers'
+import { Courses } from './collections/courses/Courses'
+import { Participation } from './collections/courses/Participation'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +25,7 @@ export default buildConfig({
   },
 
   // Database Collections
-  collections: [Users, Media, Customers],
+  collections: [Users, Media, Customers, Courses, Participation],
 
   // Adapters
   db: mongooseAdapter({
