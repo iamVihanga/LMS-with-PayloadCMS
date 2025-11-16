@@ -65,3 +65,13 @@ That's it! The Docker instance will help you get up and running quickly while al
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+
+---
+
+Todo List
+
+1. Create bunny cdn account
+2. Upload sample videos to bunny cdn
+3. Create 1-3 sample courses with bunny cdn videos
+4. validate current process
+5. Analyse and research how to streamline upload to bunny cdn from payload cms
