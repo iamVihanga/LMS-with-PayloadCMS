@@ -4,7 +4,7 @@ import { getPayload } from 'payload'
 import { cookies } from 'next/headers'
 import config from '@payload-config'
 
-import { Customer } from '@/payload-types'
+import { Student } from '@/payload-types'
 
 interface LoginParams {
   email: string
@@ -19,7 +19,7 @@ interface LoginResponse {
 interface Result {
   exp?: number
   token?: string
-  user?: Customer
+  user?: Student
 }
 
 export async function login({ email, password }: LoginParams): Promise<LoginResponse> {
@@ -27,7 +27,7 @@ export async function login({ email, password }: LoginParams): Promise<LoginResp
     const payload = await getPayload({ config })
 
     const result: Result = await payload.login({
-      collection: 'customers',
+      collection: 'students',
       data: { email, password },
     })
 

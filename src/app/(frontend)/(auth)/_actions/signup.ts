@@ -2,7 +2,7 @@
 
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { Customer } from '@/payload-types'
+import { Student } from '@/payload-types'
 import { cookies } from 'next/headers'
 
 interface SignupParams {
@@ -18,7 +18,7 @@ interface SignupResponse {
 type Result = {
   exp?: number
   token?: string
-  user?: Customer
+  user?: Student
 }
 
 export async function signup({ email, password }: SignupParams): Promise<SignupResponse> {
@@ -26,7 +26,7 @@ export async function signup({ email, password }: SignupParams): Promise<SignupR
     const payload = await getPayload({ config })
 
     await payload.create({
-      collection: 'customers',
+      collection: 'students',
       data: {
         email,
         password,
@@ -34,7 +34,7 @@ export async function signup({ email, password }: SignupParams): Promise<SignupR
     })
 
     const result: Result = await payload.login({
-      collection: 'customers',
+      collection: 'students',
       data: { email, password },
     })
 

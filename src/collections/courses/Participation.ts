@@ -7,7 +7,7 @@ export const Participation: CollectionConfig = {
       name: 'participant',
       label: 'Participant',
       type: 'relationship',
-      relationTo: 'customers',
+      relationTo: 'students',
       required: true,
     },
     {

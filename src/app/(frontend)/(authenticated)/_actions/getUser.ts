@@ -5,9 +5,9 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 
 import type { Payload } from 'payload'
-import type { Customer } from '@/payload-types'
+import type { Student } from '@/payload-types'
 
-export async function getUser(): Promise<Customer | null> {
+export async function getUser(): Promise<Student | null> {
   try {
     const headers = await getHeaders()
 
@@ -18,8 +18,8 @@ export async function getUser(): Promise<Customer | null> {
     const { user } = await payload.auth({ headers })
 
     // Check if user belongs to customers collection
-    if (user && user.collection === 'customers') {
-      return user as Customer
+    if (user && user.collection === 'students') {
+      return user as Student
     }
 
     return null

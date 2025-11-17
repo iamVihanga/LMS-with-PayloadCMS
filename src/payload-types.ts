@@ -64,13 +64,13 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
-    customers: CustomerAuthOperations;
+    students: StudentAuthOperations;
   };
   blocks: {};
   collections: {
     users: User;
     media: Media;
-    customers: Customer;
+    students: Student;
     courses: Course;
     participation: Participation;
     'payload-kv': PayloadKv;
@@ -82,7 +82,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    customers: CustomersSelect<false> | CustomersSelect<true>;
+    students: StudentsSelect<false> | StudentsSelect<true>;
     courses: CoursesSelect<false> | CoursesSelect<true>;
     participation: ParticipationSelect<false> | ParticipationSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -100,8 +100,8 @@ export interface Config {
     | (User & {
         collection: 'users';
       })
-    | (Customer & {
-        collection: 'customers';
+    | (Student & {
+        collection: 'students';
       });
   jobs: {
     tasks: unknown;
@@ -126,7 +126,7 @@ export interface UserAuthOperations {
     password: string;
   };
 }
-export interface CustomerAuthOperations {
+export interface StudentAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -189,9 +189,9 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "customers".
+ * via the `definition` "students".
  */
-export interface Customer {
+export interface Student {
   id: string;
   updatedAt: string;
   createdAt: string;
@@ -272,7 +272,7 @@ export interface Course {
  */
 export interface Participation {
   id: string;
-  participant: string | Customer;
+  participant: string | Student;
   course: string | Course;
   progress?: number | null;
   updatedAt: string;
@@ -311,8 +311,8 @@ export interface PayloadLockedDocument {
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'customers';
-        value: string | Customer;
+        relationTo: 'students';
+        value: string | Student;
       } | null)
     | ({
         relationTo: 'courses';
@@ -329,8 +329,8 @@ export interface PayloadLockedDocument {
         value: string | User;
       }
     | {
-        relationTo: 'customers';
-        value: string | Customer;
+        relationTo: 'students';
+        value: string | Student;
       };
   updatedAt: string;
   createdAt: string;
@@ -347,8 +347,8 @@ export interface PayloadPreference {
         value: string | User;
       }
     | {
-        relationTo: 'customers';
-        value: string | Customer;
+        relationTo: 'students';
+        value: string | Student;
       };
   key?: string | null;
   value?:
@@ -416,9 +416,9 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "customers_select".
+ * via the `definition` "students_select".
  */
-export interface CustomersSelect<T extends boolean = true> {
+export interface StudentsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   email?: T;

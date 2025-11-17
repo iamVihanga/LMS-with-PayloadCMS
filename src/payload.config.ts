@@ -9,7 +9,7 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import brevoAdapter from './utils/brevoAdapter'
-import { Customers } from './collections/Customers'
+import { Students } from './collections/Students'
 import { Courses } from './collections/courses/Courses'
 import { Participation } from './collections/courses/Participation'
 
@@ -25,7 +25,7 @@ export default buildConfig({
   },
 
   // Database Collections
-  collections: [Users, Media, Customers, Courses, Participation],
+  collections: [Users, Media, Students, Courses, Participation],
 
   // Adapters
   db: mongooseAdapter({
