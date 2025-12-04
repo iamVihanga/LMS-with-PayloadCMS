@@ -70,8 +70,8 @@ If you have any issues or questions, reach out to us on [Discord](https://discor
 
 Todo List
 
-1. Create bunny cdn account
-2. Upload sample videos to bunny cdn
-3. Create 1-3 sample courses with bunny cdn videos
-4. validate current process
-5. Analyse and research how to streamline upload to bunny cdn from payload cms
+1. Create bunny cdn account - Done
+2. Upload sample videos to bunny cdn - Done
+3. Create 1-3 sample courses with bunny cdn videos - Done
+4. validate current process = Done
+5. Analyse and research how to streamline upload to bunny cdn from payload cms - Ongoing
