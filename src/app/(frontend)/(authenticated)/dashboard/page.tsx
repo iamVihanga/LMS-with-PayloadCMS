@@ -7,6 +7,7 @@ import { getUser } from '../_actions/getUser'
 import { Card } from '@/components/ui/card'
 import Image from 'next/image'
 import { Calendar1Icon } from 'lucide-react'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -35,31 +36,30 @@ export default async function DashboardPage({}: Props) {
 
       <div className="grid grid-cols-2 gap-4">
         {courses.map((course) => (
-          <Card
-            key={course.id}
-            className="p-0 overflow-hidden flex flex-col gap-2 group cursor-pointer hover:shadow-lg transition-shadow"
-          >
-            <Image
-              alt={course.title}
-              src={
-                typeof course.thumbnail === 'string'
-                  ? course?.thumbnail
-                  : course?.thumbnail?.url || '/placeholder.png'
-              }
-              width={300}
-              height={200}
-              className="w-full h-48 object-cover aspect-video group-hover:scale-105 transition-transform"
-            />
+          <Link key={course.id} href={`/dashboard/course/${course.id}`}>
+            <Card className="p-0 overflow-hidden flex flex-col gap-2 group cursor-pointer hover:shadow-lg transition-shadow">
+              <Image
+                alt={course.title}
+                src={
+                  typeof course.thumbnail === 'string'
+                    ? course?.thumbnail
+                    : course?.thumbnail?.url || '/placeholder.png'
+                }
+                width={300}
+                height={200}
+                className="w-full h-48 object-cover aspect-video group-hover:scale-105 transition-transform"
+              />
 
-            <div className="px-4 pt-2 pb-4 space-3">
-              <p className="font-heading font-semibold group-hover:underline">{course.title}</p>
+              <div className="px-4 pt-2 pb-4 space-3">
+                <p className="font-heading font-semibold group-hover:underline">{course.title}</p>
 
-              <p className="text-sm text-secondary-foreground flex items-center gap-2">
-                <Calendar1Icon className="size-3" />
-                {new Date(course.createdAt).toDateString()}
-              </p>
-            </div>
-          </Card>
+                <p className="text-sm text-secondary-foreground flex items-center gap-2">
+                  <Calendar1Icon className="size-3" />
+                  {new Date(course.createdAt).toDateString()}
+                </p>
+              </div>
+            </Card>
+          </Link>
         ))}
       </div>
     </div>
