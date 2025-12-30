@@ -2,6 +2,7 @@ import { GraduationCapIcon } from 'lucide-react'
 import React from 'react'
 import { LogoutButton } from '../_components/logout-button'
 import { getUser } from '../_actions/getUser'
+import Link from 'next/link'
 
 type Props = {
   children: React.ReactNode
@@ -20,16 +21,18 @@ export default async function DashboardLayout({ children }: Props) {
         {/* Header */}
         <div className="w-full flex items-center justify-between py-2 border-b border-border mb-6">
           {/* Logo */}
-          <div className="flex items-center justify-center gap-3">
-            <div className="rounded-md bg-primary p-2 text-primary-foreground">
-              <GraduationCapIcon className="size-4" />
-            </div>
+          <Link href={`/dashboard`}>
+            <div className="flex items-center justify-center gap-3">
+              <div className="rounded-md bg-primary p-2 text-primary-foreground">
+                <GraduationCapIcon className="size-4" />
+              </div>
 
-            <div>
-              <p className="text-sm text-foreground font-semibold font-heading">CodeVille LMS</p>
-              <p className="text-xs text-foreground/70">{`Learn. Code and Succeed.`}</p>
+              <div>
+                <p className="text-sm text-foreground font-semibold font-heading">CodeVille LMS</p>
+                <p className="text-xs text-foreground/70">{`Learn. Code and Succeed.`}</p>
+              </div>
             </div>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-4">
             <div className="">
