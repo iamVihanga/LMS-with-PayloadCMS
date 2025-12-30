@@ -3,7 +3,7 @@ import React from 'react'
 
 import configPromise from '@payload-config'
 import { getUser } from '../../../_actions/getUser'
-import { Course } from '@/payload-types'
+import { Course, Participation } from '@/payload-types'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { RichText } from '@/components/rich-text'
 import { Card } from '@/components/ui/card'
 import StartCourseButton from '../_components/start-course-button'
+import { ResumeCourseButton } from '../_components/resume-course-button'
 
 type Props = {
   params: Promise<{
@@ -29,6 +30,7 @@ export default async function CoursePage({ params }: Props) {
   const user = await getUser()
 
   let course: Course | null = null
+  let participant: Participation | null = null
 
   try {
     const res = await payload.findByID({
@@ -47,6 +49,27 @@ export default async function CoursePage({ params }: Props) {
 
   if (!course) notFound()
 
+  // Check participation status
+  try {
+    const participationRes = await payload.find({
+      collection: 'participation',
+      where: {
+        course: {
+          equals: courseId,
+        },
+        participant: {
+          equals: user?.id!,
+        },
+      },
+      overrideAccess: false,
+      user,
+    })
+
+    participant = (participationRes?.docs?.[0] as Participation) || null
+  } catch (error) {
+    console.error('Error fetching participation:', error)
+  }
+
   return (
     <div className="w-full max-w-4xl mx-auto p-4 flex flex-col gap-6">
       <Button asChild variant={'link'} className="w-fit">
@@ -56,7 +79,7 @@ export default async function CoursePage({ params }: Props) {
         </Link>
       </Button>
 
-      <div className="relative w-full aspect-video overflow-hidden border border-gray-700">
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-gray-700">
         <Image
           alt={course.title}
           src={
@@ -112,7 +135,11 @@ export default async function CoursePage({ params }: Props) {
         </div>
       </div>
 
-      <StartCourseButton courseId={course.id} />
+      {participant ? (
+        <ResumeCourseButton participant={participant} className="w-full" />
+      ) : (
+        <StartCourseButton courseId={course.id} />
+      )}
     </div>
   )
 }

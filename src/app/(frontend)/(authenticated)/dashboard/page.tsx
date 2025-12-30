@@ -37,7 +37,7 @@ export default async function DashboardPage({}: Props) {
       <div className="grid grid-cols-2 gap-4">
         {courses.map((course) => (
           <Link key={course.id} href={`/dashboard/course/${course.id}`}>
-            <Card className="p-0 overflow-hidden flex flex-col gap-2 group cursor-pointer hover:shadow-lg transition-shadow">
+            <Card className="p-0 overflow-hidden flex flex-col gap-2 group cursor-pointer shadow-xs hover:shadow-md transition-shadow rounded-lg">
               <Image
                 alt={course.title}
                 src={

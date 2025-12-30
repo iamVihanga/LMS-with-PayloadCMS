@@ -42,6 +42,7 @@ export default function StartCourseButton({ className, courseId }: Props) {
 
   return (
     <Button
+      size="lg"
       onClick={handleStartCourse}
       loading={status === 'loading'}
       icon={
